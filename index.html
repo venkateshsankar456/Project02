@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+
+    .captcha-container {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Register</h2>
+    <form id="registration-form" action="#" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="country">Country:</label>
+      <select id="country" name="country" required onchange="populateStates()">
+        <option value="">-- Select Country --</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="Australia">Australia</option>
+      </select>
+
+      <label for="state">State:</label>
+      <select id="state" name="state" required>
+        <option value="">-- Select State --</option>
+      </select>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required />
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="4" required></textarea>
+
+      <label for="pincode">Pincode:</label>
+      <input type="text" id="pincode" name="pincode" required />
+
+      <button type="submit">Submit</button>
+      
+
+    </form>
+  </div>
+
+  <script>
+    const stateOptions = {
+      India: ["Delhi", "Maharashtra", "Tamil Nadu", "Karnataka", "Kerala"],
+      USA: ["California", "Texas", "Florida", "New York", "Illinois"],
+      Australia: ["New South Wales", "Victoria", "Queensland", "Tasmania"]
+    };
+
+    function populateStates() {
+      const country = document.getElementById("country").value;
+      const stateSelect = document.getElementById("state");
+
+      // Clear previous options
+      stateSelect.innerHTML = '<option value="">-- Select State --</option>';
+
+      if (stateOptions[country]) {
+        stateOptions[country].forEach(state => {
+          const option = document.createElement("option");
+          option.value = state;
+          option.textContent = state;
+          stateSelect.appendChild(option);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+
+
